@@ -8,8 +8,9 @@
 
 #import <Foundation/Foundation.h>
 #import <CoreLocation/CoreLocation.h>
+#import <CoreData/CoreData.h>
 
-@interface TSGeoLoc : NSObject
+@interface TSGeoLoc : NSManagedObject
 
 @property (nonatomic, strong) CLLocation *location;
 @property (nonatomic, strong) NSString *friendlyName;
