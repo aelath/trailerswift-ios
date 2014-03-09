@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		258DBA285DEA4F4D99FCDE0A /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 786F405BC80845909B2F6E8E /* libPods.a */; };
 		BCB65F3218CABD8900F04F9A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BCB65F3118CABD8900F04F9A /* Foundation.framework */; };
 		BCB65F3418CABD8900F04F9A /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BCB65F3318CABD8900F04F9A /* CoreGraphics.framework */; };
 		BCB65F3618CABD8900F04F9A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BCB65F3518CABD8900F04F9A /* UIKit.framework */; };
@@ -14,13 +15,18 @@
 		BCB65F3E18CABD8900F04F9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = BCB65F3D18CABD8900F04F9A /* main.m */; };
 		BCB65F4218CABD8900F04F9A /* TSAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = BCB65F4118CABD8900F04F9A /* TSAppDelegate.m */; };
 		BCB65F4518CABD8900F04F9A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BCB65F4318CABD8900F04F9A /* Main.storyboard */; };
-		BCB65F4818CABD8900F04F9A /* TSViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BCB65F4718CABD8900F04F9A /* TSViewController.m */; };
+		BCB65F4818CABD8900F04F9A /* TSMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BCB65F4718CABD8900F04F9A /* TSMainViewController.m */; };
 		BCB65F4A18CABD8900F04F9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BCB65F4918CABD8900F04F9A /* Images.xcassets */; };
 		BCB65F5118CABD8900F04F9A /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BCB65F5018CABD8900F04F9A /* XCTest.framework */; };
 		BCB65F5218CABD8900F04F9A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BCB65F3118CABD8900F04F9A /* Foundation.framework */; };
 		BCB65F5318CABD8900F04F9A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BCB65F3518CABD8900F04F9A /* UIKit.framework */; };
 		BCB65F5B18CABD8900F04F9A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = BCB65F5918CABD8900F04F9A /* InfoPlist.strings */; };
 		BCB65F5D18CABD8900F04F9A /* Trailer_SwiftTests.m in Sources */ = {isa = PBXBuildFile; fileRef = BCB65F5C18CABD8900F04F9A /* Trailer_SwiftTests.m */; };
+		BCB65F6818CADE5A00F04F9A /* TSGeoLoc.m in Sources */ = {isa = PBXBuildFile; fileRef = BCB65F6718CADE5A00F04F9A /* TSGeoLoc.m */; };
+		BCB65F6C18CB62C000F04F9A /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = BCB65F6A18CB62C000F04F9A /* Model.xcdatamodeld */; };
+		BCB65F7218CB691500F04F9A /* TSGeoLocStore.m in Sources */ = {isa = PBXBuildFile; fileRef = BCB65F7118CB691500F04F9A /* TSGeoLocStore.m */; };
+		BCB65F7518CB732700F04F9A /* TSGeoLocManager.m in Sources */ = {isa = PBXBuildFile; fileRef = BCB65F7418CB732700F04F9A /* TSGeoLocManager.m */; };
+		BCB65F7818CC146700F04F9A /* TSNetworkUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = BCB65F7718CC146700F04F9A /* TSNetworkUtility.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -34,6 +40,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		786F405BC80845909B2F6E8E /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		8F6BAD2332AE4806A7B263A9 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 		BCB65F2E18CABD8900F04F9A /* Trailer Swift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Trailer Swift.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		BCB65F3118CABD8900F04F9A /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		BCB65F3318CABD8900F04F9A /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -45,14 +53,23 @@
 		BCB65F4018CABD8900F04F9A /* TSAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TSAppDelegate.h; sourceTree = "<group>"; };
 		BCB65F4118CABD8900F04F9A /* TSAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TSAppDelegate.m; sourceTree = "<group>"; };
 		BCB65F4418CABD8900F04F9A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		BCB65F4618CABD8900F04F9A /* TSViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TSViewController.h; sourceTree = "<group>"; };
-		BCB65F4718CABD8900F04F9A /* TSViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TSViewController.m; sourceTree = "<group>"; };
+		BCB65F4618CABD8900F04F9A /* TSMainViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TSMainViewController.h; sourceTree = "<group>"; };
+		BCB65F4718CABD8900F04F9A /* TSMainViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TSMainViewController.m; sourceTree = "<group>"; };
 		BCB65F4918CABD8900F04F9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		BCB65F4F18CABD8900F04F9A /* Trailer SwiftTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Trailer SwiftTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		BCB65F5018CABD8900F04F9A /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		BCB65F5818CABD8900F04F9A /* Trailer SwiftTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Trailer SwiftTests-Info.plist"; sourceTree = "<group>"; };
 		BCB65F5A18CABD8900F04F9A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		BCB65F5C18CABD8900F04F9A /* Trailer_SwiftTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Trailer_SwiftTests.m; sourceTree = "<group>"; };
+		BCB65F6618CADE5A00F04F9A /* TSGeoLoc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSGeoLoc.h; sourceTree = "<group>"; };
+		BCB65F6718CADE5A00F04F9A /* TSGeoLoc.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSGeoLoc.m; sourceTree = "<group>"; };
+		BCB65F6B18CB62C000F04F9A /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
+		BCB65F7018CB691500F04F9A /* TSGeoLocStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSGeoLocStore.h; sourceTree = "<group>"; };
+		BCB65F7118CB691500F04F9A /* TSGeoLocStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSGeoLocStore.m; sourceTree = "<group>"; };
+		BCB65F7318CB732700F04F9A /* TSGeoLocManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSGeoLocManager.h; sourceTree = "<group>"; };
+		BCB65F7418CB732700F04F9A /* TSGeoLocManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSGeoLocManager.m; sourceTree = "<group>"; };
+		BCB65F7618CC146700F04F9A /* TSNetworkUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSNetworkUtility.h; sourceTree = "<group>"; };
+		BCB65F7718CC146700F04F9A /* TSNetworkUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSNetworkUtility.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,6 +80,7 @@
 				BCB65F3418CABD8900F04F9A /* CoreGraphics.framework in Frameworks */,
 				BCB65F3618CABD8900F04F9A /* UIKit.framework in Frameworks */,
 				BCB65F3218CABD8900F04F9A /* Foundation.framework in Frameworks */,
+				258DBA285DEA4F4D99FCDE0A /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -86,6 +104,7 @@
 				BCB65F5618CABD8900F04F9A /* Trailer SwiftTests */,
 				BCB65F3018CABD8900F04F9A /* Frameworks */,
 				BCB65F2F18CABD8900F04F9A /* Products */,
+				8F6BAD2332AE4806A7B263A9 /* Pods.xcconfig */,
 			);
 			sourceTree = "<group>";
 		};
@@ -105,6 +124,7 @@
 				BCB65F3318CABD8900F04F9A /* CoreGraphics.framework */,
 				BCB65F3518CABD8900F04F9A /* UIKit.framework */,
 				BCB65F5018CABD8900F04F9A /* XCTest.framework */,
+				786F405BC80845909B2F6E8E /* libPods.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -112,11 +132,17 @@
 		BCB65F3718CABD8900F04F9A /* Trailer Swift */ = {
 			isa = PBXGroup;
 			children = (
+				BCB65F7618CC146700F04F9A /* TSNetworkUtility.h */,
+				BCB65F7718CC146700F04F9A /* TSNetworkUtility.m */,
+				BCB65F6A18CB62C000F04F9A /* Model.xcdatamodeld */,
+				BCB65F6918CAE2E300F04F9A /* GeoLocation */,
 				BCB65F4018CABD8900F04F9A /* TSAppDelegate.h */,
 				BCB65F4118CABD8900F04F9A /* TSAppDelegate.m */,
+				BCB65F7318CB732700F04F9A /* TSGeoLocManager.h */,
+				BCB65F7418CB732700F04F9A /* TSGeoLocManager.m */,
 				BCB65F4318CABD8900F04F9A /* Main.storyboard */,
-				BCB65F4618CABD8900F04F9A /* TSViewController.h */,
-				BCB65F4718CABD8900F04F9A /* TSViewController.m */,
+				BCB65F4618CABD8900F04F9A /* TSMainViewController.h */,
+				BCB65F4718CABD8900F04F9A /* TSMainViewController.m */,
 				BCB65F4918CABD8900F04F9A /* Images.xcassets */,
 				BCB65F3818CABD8900F04F9A /* Supporting Files */,
 			);
@@ -152,6 +178,17 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		BCB65F6918CAE2E300F04F9A /* GeoLocation */ = {
+			isa = PBXGroup;
+			children = (
+				BCB65F6618CADE5A00F04F9A /* TSGeoLoc.h */,
+				BCB65F6718CADE5A00F04F9A /* TSGeoLoc.m */,
+				BCB65F7018CB691500F04F9A /* TSGeoLocStore.h */,
+				BCB65F7118CB691500F04F9A /* TSGeoLocStore.m */,
+			);
+			name = GeoLocation;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -159,9 +196,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = BCB65F6018CABD8900F04F9A /* Build configuration list for PBXNativeTarget "Trailer Swift" */;
 			buildPhases = (
+				DEB27A35E9A8498C8C050EA3 /* Check Pods Manifest.lock */,
 				BCB65F2A18CABD8900F04F9A /* Sources */,
 				BCB65F2B18CABD8900F04F9A /* Frameworks */,
 				BCB65F2C18CABD8900F04F9A /* Resources */,
+				705DB7F970B545BCA9D9A4BE /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -245,14 +284,52 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		705DB7F970B545BCA9D9A4BE /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Pods-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		DEB27A35E9A8498C8C050EA3 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		BCB65F2A18CABD8900F04F9A /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				BCB65F3E18CABD8900F04F9A /* main.m in Sources */,
+				BCB65F7518CB732700F04F9A /* TSGeoLocManager.m in Sources */,
+				BCB65F7818CC146700F04F9A /* TSNetworkUtility.m in Sources */,
+				BCB65F7218CB691500F04F9A /* TSGeoLocStore.m in Sources */,
+				BCB65F6818CADE5A00F04F9A /* TSGeoLoc.m in Sources */,
+				BCB65F6C18CB62C000F04F9A /* Model.xcdatamodeld in Sources */,
 				BCB65F4218CABD8900F04F9A /* TSAppDelegate.m in Sources */,
-				BCB65F4818CABD8900F04F9A /* TSViewController.m in Sources */,
+				BCB65F4818CABD8900F04F9A /* TSMainViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -376,6 +453,7 @@
 		};
 		BCB65F6118CABD8900F04F9A /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8F6BAD2332AE4806A7B263A9 /* Pods.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -389,6 +467,7 @@
 		};
 		BCB65F6218CABD8900F04F9A /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8F6BAD2332AE4806A7B263A9 /* Pods.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -461,6 +540,7 @@
 				BCB65F6218CABD8900F04F9A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		BCB65F6318CABD8900F04F9A /* Build configuration list for PBXNativeTarget "Trailer SwiftTests" */ = {
 			isa = XCConfigurationList;
@@ -469,8 +549,22 @@
 				BCB65F6518CABD8900F04F9A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		BCB65F6A18CB62C000F04F9A /* Model.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				BCB65F6B18CB62C000F04F9A /* Model.xcdatamodel */,
+			);
+			currentVersion = BCB65F6B18CB62C000F04F9A /* Model.xcdatamodel */;
+			path = Model.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = BCB65F2618CABD8900F04F9A /* Project object */;
 }
