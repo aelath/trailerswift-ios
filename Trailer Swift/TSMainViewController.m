@@ -7,8 +7,12 @@
 //
 
 #import "TSMainViewController.h"
+#import "TSGeoLocManager.h"
 
 @interface TSMainViewController ()
+
+@property (weak, nonatomic) IBOutlet UIButton *myButton;
+- (IBAction)newLocation:(UIButton *)sender;
 
 @end
 
@@ -26,4 +30,8 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (IBAction)newLocation:(UIButton *)sender {
+    TSGeoLocManager *glocMan = [[TSGeoLocManager alloc] init];
+    [glocMan getLocation];
+}
 @end

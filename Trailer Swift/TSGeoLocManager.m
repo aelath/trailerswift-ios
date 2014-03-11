@@ -9,6 +9,7 @@
 #import <CoreLocation/CoreLocation.h>
 #import "TSGeoLocManager.h"
 #import "TSGeoLocStore.h"
+#import "TSNetworkUtility.h"
 
 #define kTSGeoLocCreationInterval 3600
 
@@ -35,7 +36,7 @@
 - (void)getLocation
 {
     // Begin listening for location info
-    
+    NSLog(@"** Start Listening for Location **");
     [self.locationManager startUpdatingLocation];
 
 }
@@ -54,6 +55,8 @@
 
 - (void)makeNewLocation:(CLLocation*)location
 {
+    NSLog(@"** Making a New Location **");
+    
     // Validate location
     if (self.lastLocation) {
         if (![self isValid:location]) {
@@ -64,12 +67,15 @@
     
     // If valid, stop listening for location info
     [self.locationManager stopUpdatingLocation];
+    NSLog(@"** Stopped Listening for Location **");
     
     // Make a geoloc object with the selected location object
     TSGeoLoc *geoLoc = [self.store newGeoLocWithLocation:location];
     self.lastLocation = location;
     
     // Send the geoloc oject to the platform
+    TSNetworkUtility *nu = [[TSNetworkUtility alloc] init];
+    [nu sendGeoLocation:geoLoc];
     
     // If SUCCESS, update the geoloc to SENT, send unsent geolocs
     [self.store updateSentWithGeoLoc:geoLoc];

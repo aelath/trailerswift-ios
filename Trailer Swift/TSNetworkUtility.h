@@ -9,8 +9,9 @@
 #import <Foundation/Foundation.h>
 #import <AFNetworking/AFNetworking.h>
 
+@class TSGeoLoc;
 @interface TSNetworkUtility : NSObject
 
-- (void)sendGeoLocations:(NSArray*)geoLocs;
+- (void)sendGeoLocation:(TSGeoLoc*)geoLocs;
 
 @end

@@ -24,17 +24,24 @@
                                 <color key="shadowColor" red="0.80719400009999998" green="0.83347989359999997" blue="0.85436480979999996" alpha="1" colorSpace="calibratedRGB"/>
                                 <size key="shadowOffset" width="0.0" height="2"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kB1-I3-drv">
-                                <rect key="frame" x="108" y="425" width="104" height="67"/>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="e1t-hg-zot">
+                                <rect key="frame" x="41" y="206" width="239" height="156"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="New Location">
+                                <fontDescription key="fontDescription" type="system" pointSize="68"/>
+                                <state key="normal" title="Button">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="newLocation:" destination="YvU-4i-n8K" eventType="touchUpInside" id="WEj-sj-z9X"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="TS" id="lri-JM-4Ku"/>
+                    <connections>
+                        <outlet property="myButton" destination="e1t-hg-zot" id="Q1r-iD-bBt"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ysH-G4-iae" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -44,7 +51,7 @@
         <scene sceneID="96s-SB-ser">
             <objects>
                 <tabBarController definesPresentationContext="YES" id="FJJ-oz-Fcj" sceneMemberID="viewController">
-                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                    <nil key="simulatedBottomBarMetrics"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="QeZ-TA-sqr">
                         <rect key="frame" x="129" y="330" width="163" height="49"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
