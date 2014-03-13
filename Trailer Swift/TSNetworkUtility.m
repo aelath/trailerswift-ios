@@ -15,8 +15,8 @@
 #define kTSURLLocationDataEndpoint @"http://www.trailer-swift.com/tours/%@/locations.json"
 #define kTSURLToursEndpoint @"http://www.trailer-swift.com/tours.json?user_email=%@&user_token=%@"
 #define kTSURLAuthEndpoint @"http://www.trailer-swift.com/users/sign_in.json"
-#define kTSTestingUsername @"ptk921@gmail.com"
-#define kTSTestingPassword @"password"
+#define kTSTestingUsername @""
+#define kTSTestingPassword @""
 
 @interface TSNetworkUtility ()
 
