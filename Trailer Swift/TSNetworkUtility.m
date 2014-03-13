@@ -9,11 +9,12 @@
 #import "TSNetworkUtility.h"
 #import <CoreLocation/CoreLocation.h>
 #import <AFNetworking/AFURLRequestSerialization.h>
+#import "TSGeoLocStore.h"
 #import "TSGeoLoc.h"
 
-#define kTSURLLocationDataEndpoint @"http://www.trailer-swift.com/%@/locations.json"
+#define kTSURLLocationDataEndpoint @"http://www.trailer-swift.com/tours/%@/locations.json"
 #define kTSURLToursEndpoint @"http://www.trailer-swift.com/tours.json?user_email=%@&user_token=%@"
-#define kTSURLAuthEndpoint @"https://www.trailer-swift.com/users/sign_in.json"
+#define kTSURLAuthEndpoint @"http://www.trailer-swift.com/users/sign_in.json"
 #define kTSTestingUsername @"ptk921@gmail.com"
 #define kTSTestingPassword @"password"
 
@@ -21,6 +22,7 @@
 
 @property (nonatomic, strong) NSString *authToken;
 @property (nonatomic, strong) NSString *userID;
+@property (nonatomic, strong) NSString *password;
 @property (nonatomic, strong) NSString *tourID;
 @property (nonatomic, strong) NSDateFormatter *dateFormatter;
 @property (nonatomic, strong) TSGeoLoc *pendingParam;
@@ -29,7 +31,25 @@
 
 @implementation TSNetworkUtility
 
-- (void)sendGeoLocation:(TSGeoLoc *)geoLoc
+#pragma mark - Setup
+- (id)initWithUsername:(NSString*)username password:(NSString*)password
+{
+    self = [super init];
+    if (self) {
+        _userID = username;
+        _password = password;
+    }
+    return self;
+}
+
+- (id)init
+{
+    TSGeoLocStore *store = [TSGeoLocStore sharedStore];
+    return [self initWithUsername:store.username password:store.password];
+}
+
+#pragma mark - Networking
+- (void)sendGeoLocation:(TSGeoLoc *)geoLoc sender:(id)sender
 {
     self.pendingParam = geoLoc;
     
@@ -41,7 +61,6 @@
         return;
     }
     
-    __weak TSNetworkUtility *me = self;
     // Build the URL for the request
     NSString *url = [NSString stringWithFormat:kTSURLLocationDataEndpoint, self.tourID];
     
@@ -54,10 +73,13 @@
     [manager setRequestSerializer:[AFJSONRequestSerializer serializer]];
     [manager POST:url parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSLog(@"JSON: %@", responseObject);
-        // Call the "delegate" method in the TSGeoLocManager
-        me.pendingParam = nil;
+        if ([sender respondsToSelector:@selector(locationResponseWithObject:locationID:)]) {
+            [(TSGeoLocManager*)sender locationResponseWithObject:geoLoc locationID:[responseObject objectForKey:@"id"]];
+        }
+        self.pendingParam = nil;
         NSLog(@"** SUCCESS **");
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"Request: %@", operation.request.allHTTPHeaderFields);
         NSLog(@"Error: %@", error);
         // Cry
     }];
@@ -74,7 +96,7 @@
                                 @"lng": @(location.coordinate.longitude),
                                 @"located_at": date};
     
-    NSDictionary *locsDict = @{@"locations": entryDict};
+    NSDictionary *locsDict = @{@"location": entryDict};
     [paramDict addEntriesFromDictionary:locsDict];
     
     return paramDict;
@@ -95,7 +117,6 @@
 {
     NSLog(@"** Authenticating **");
     // Make a request with username password and POST it
-    __weak TSNetworkUtility *me = self;
 
     NSString *url = kTSURLAuthEndpoint;
     NSDictionary *parameters = @{@"user": @{@"email": kTSTestingUsername,
@@ -106,9 +127,9 @@
     [manager setRequestSerializer:[AFJSONRequestSerializer serializer]];
     [manager POST:url parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSLog(@"JSON: %@", responseObject);
-        [me authResponseWithObject:responseObject];
+        [self authResponseWithObject:responseObject];
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        NSLog(@"Error: %@", error);
+        NSLog(@"Error: %@ \n\n Request Operation: %@", error, operation);
         // Cry
     }];
 }
@@ -117,17 +138,17 @@
 {
     // Set the authToken
     self.authToken = [object objectForKey:@"auth_token"];
+    self.userID = [object objectForKey:@"email"];
     
     // Send any pending requests that got caught on auth
     if (self.pendingParam) {
-        [self sendGeoLocation:self.pendingParam];
+        [self sendGeoLocation:self.pendingParam sender:[[TSGeoLocStore sharedStore] availableGeoLocManager]];
     }
 }
 
 - (void)getTours
 {
     NSLog(@"** GET Tour ID **");
-    __weak TSNetworkUtility *me = self;
     
     if (!self.authToken) {
         [self authenticate];
@@ -138,8 +159,9 @@
     
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     [manager GET:url parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSLog(@"Operation: %@", operation);
         NSLog(@"JSON: %@", responseObject);
-        [me toursResponseWithObject:responseObject];
+        [self toursResponseWithObject:responseObject];
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSLog(@"Error: %@", error);
     }];
@@ -148,12 +170,13 @@
 
 - (void)toursResponseWithObject:(id)object
 {
+    // Returns an array of tours...
     // Set the tour ID
-    self.tourID = [object objectForKey:@"tour"];
+    self.tourID = [[object firstObject] objectForKey:@"id"];
     
     // Send any pending requests that got caught on auth
     if (self.pendingParam) {
-        [self sendGeoLocation:self.pendingParam];
+        [self sendGeoLocation:self.pendingParam sender:[[TSGeoLocStore sharedStore] availableGeoLocManager]];
     }
 }
 @end

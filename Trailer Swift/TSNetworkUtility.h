@@ -12,6 +12,7 @@
 @class TSGeoLoc;
 @interface TSNetworkUtility : NSObject
 
-- (void)sendGeoLocation:(TSGeoLoc*)geoLocs;
+- (id)initWithUsername:(NSString*)username password:(NSString*)password;
+- (void)sendGeoLocation:(TSGeoLoc*)geoLoc sender:(id)sender;
 
 @end

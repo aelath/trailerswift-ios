@@ -8,15 +8,15 @@
 
 #import <Foundation/Foundation.h>
 #import <CoreLocation/CoreLocation.h>
-#import <CoreData/CoreData.h>
 
-@interface TSGeoLoc : NSManagedObject
+@interface TSGeoLoc : NSObject
 
 @property (nonatomic, strong) CLLocation *location;
 @property (nonatomic, strong) NSString *friendlyName;
 @property (nonatomic, strong) NSDate *timeStamp;
+@property (nonatomic, strong) NSString *locationID; // Comes from the server
 @property (nonatomic, assign) BOOL sent;
 
-- (id)initWithLocation:(CLLocation*)location;
+- (id)initWithLocation:(CLLocation*)loc;
 
 @end

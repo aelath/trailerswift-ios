@@ -9,12 +9,16 @@
 #import "TSGeoLocStore.h"
 #import "TSGeoLoc.h"
 
+@interface TSGeoLocStore ()
+
+@property (nonatomic, strong) TSGeoLocManager *gLocMan;
+
+@end
 
 @implementation TSGeoLocStore
 
-@dynamic allGeoLocs;
-@dynamic unsentGeoLocs;
-@dynamic geoLoc;
+@synthesize allGeoLocs;
+@synthesize unsentGeoLocs;
 
 + (TSGeoLocStore*)sharedStore
 {
@@ -26,29 +30,42 @@
     return sharedStore;
 }
 
-+ (id)allocWithZone:(struct _NSZone *)zone
-{
-    return [TSGeoLocStore sharedStore];
-}
-
 - (id)init
 {
+    self = [super init];
     return self;
 }
 
 - (TSGeoLoc*)newGeoLocWithLocation:(CLLocation *)location
 {
     TSGeoLoc *geoLoc = [[TSGeoLoc alloc] initWithLocation:location];
-    [self.allGeoLocs addObject:geoLoc];
-    [self.unsentGeoLocs addObject:geoLoc];
-    
+    if (!self.allGeoLocs) {
+        self.allGeoLocs = [NSMutableArray arrayWithObject:geoLoc];
+    } else {
+        [self.allGeoLocs addObject:geoLoc];
+    }
+    if (!self.unsentGeoLocs) {
+        self.unsentGeoLocs = [NSMutableArray arrayWithObject:geoLoc];
+    } else {
+        [self.unsentGeoLocs addObject:geoLoc];
+    }
     return geoLoc;
 }
 
-- (void)updateSentWithGeoLoc:(TSGeoLoc *)geoLoc
+- (TSGeoLocManager*)availableGeoLocManager
+{
+    if (!_gLocMan) {
+        _gLocMan = [[TSGeoLocManager alloc] init];
+    }
+    return _gLocMan;
+}
+
+- (void)updateGeoLoc:(TSGeoLoc *)geoLoc withSentandLocationID:(NSString *)locationID
 {
     geoLoc.sent = YES;
     [self.unsentGeoLocs removeObject:geoLoc];
+    
+    geoLoc.locationID = locationID;
 }
 
 - (void)deleteGeoLoc:(TSGeoLoc *)geoLoc

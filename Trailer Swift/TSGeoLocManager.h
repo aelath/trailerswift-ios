@@ -8,8 +8,10 @@
 
 #import <Foundation/Foundation.h>
 
+@class TSGeoLoc;
 @interface TSGeoLocManager : NSObject
 
 - (void)getLocation;
+- (void)locationResponseWithObject:(TSGeoLoc*)object locationID:(NSString*)locationID;
 
 @end

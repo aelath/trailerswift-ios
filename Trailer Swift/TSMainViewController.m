@@ -7,10 +7,11 @@
 //
 
 #import "TSMainViewController.h"
-#import "TSGeoLocManager.h"
+#import "TSGeoLocStore.h"
 
 @interface TSMainViewController ()
 
+@property (strong, nonatomic) TSGeoLocManager *glocMan;
 @property (weak, nonatomic) IBOutlet UIButton *myButton;
 - (IBAction)newLocation:(UIButton *)sender;
 
@@ -31,7 +32,7 @@
 }
 
 - (IBAction)newLocation:(UIButton *)sender {
-    TSGeoLocManager *glocMan = [[TSGeoLocManager alloc] init];
-    [glocMan getLocation];
+    _glocMan = [[TSGeoLocStore sharedStore] availableGeoLocManager];
+    [_glocMan getLocation];
 }
 @end

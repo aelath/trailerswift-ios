@@ -11,11 +11,12 @@
 #import "TSGeoLocStore.h"
 #import "TSNetworkUtility.h"
 
-#define kTSGeoLocCreationInterval 3600
+#define kTSGeoLocCreationInterval 60 // Seconds. Default is 1 hour, 3600
 
 @interface TSGeoLocManager () <CLLocationManagerDelegate>
 
-@property (nonatomic, strong) TSGeoLocStore *store;
+@property (nonatomic, weak) TSGeoLocStore *store;
+@property (nonatomic, assign) BOOL track;
 @property (nonatomic, strong) CLLocationManager *locationManager;
 @property (nonatomic, strong) CLLocation *lastLocation;
 @property (nonatomic, strong) CLLocation *currenLocation;
@@ -35,10 +36,17 @@
 
 - (void)getLocation
 {
-    // Begin listening for location info
-    NSLog(@"** Start Listening for Location **");
-    [self.locationManager startUpdatingLocation];
-
+    if (!self.track) {
+        // Begin listening for location info
+        self.track = YES;
+        NSLog(@"** Start Listening for Location **");
+        [self.locationManager startUpdatingLocation];
+    } else {
+        self.track = NO;
+        [self.locationManager stopUpdatingLocation];
+        NSLog(@"** Stopped Listening for Location **");
+        return;
+    }
 }
 
 - (CLLocationManager*)locationManager
@@ -64,30 +72,31 @@
             return;
         }
     }
-    
-    // If valid, stop listening for location info
-    [self.locationManager stopUpdatingLocation];
-    NSLog(@"** Stopped Listening for Location **");
-    
+
     // Make a geoloc object with the selected location object
     TSGeoLoc *geoLoc = [self.store newGeoLocWithLocation:location];
     self.lastLocation = location;
     
     // Send the geoloc oject to the platform
     TSNetworkUtility *nu = [[TSNetworkUtility alloc] init];
-    [nu sendGeoLocation:geoLoc];
-    
+    [nu sendGeoLocation:geoLoc sender:self];
+}
+
+- (void)locationResponseWithObject:(TSGeoLoc*)object locationID:(NSString*)locationID
+{
     // If SUCCESS, update the geoloc to SENT, send unsent geolocs
-    [self.store updateSentWithGeoLoc:geoLoc];
+    [self.store updateGeoLoc:object withSentandLocationID:locationID];
     [self sendUnsentGeoLocs];
-    
 }
 
 - (BOOL)isValid:(CLLocation*)location
 {
     BOOL valid = NO;
     
-    if (!self.lastLocation) return valid;
+    if (!self.lastLocation) {
+        valid = YES;
+        return valid;
+    }
     
     NSDate *candidateEventDate = location.timestamp;
     NSDate *cachedEventDate = self.lastLocation.timestamp;
@@ -106,8 +115,8 @@
     if ([unsent count] > 0) {
         for (TSGeoLoc *geoLoc in unsent) {
             // Send to the platform via network utility
-            
-            [self.store updateSentWithGeoLoc:geoLoc];
+            TSNetworkUtility *nu = [[TSNetworkUtility alloc] init];
+            [nu sendGeoLocation:geoLoc sender:self];
         }
     }
 }
