@@ -11,12 +11,7 @@
 
 @interface TSGeoLoc : NSObject
 
-@property (nonatomic, strong) CLLocation *location;
-@property (nonatomic, strong) NSString *friendlyName;
-@property (nonatomic, strong) NSDate *timeStamp;
-@property (nonatomic, strong) NSString *locationID; // Comes from the server
-@property (nonatomic, assign) BOOL sent;
-
 - (id)initWithLocation:(CLLocation*)loc;
+- (CLLocation*)location;
 
 @end

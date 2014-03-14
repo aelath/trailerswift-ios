@@ -14,8 +14,6 @@
 
 @interface TSGeoLocStore : NSObject
 
-@property (nonatomic, strong) NSMutableArray *allGeoLocs;
-@property (nonatomic, strong) NSMutableArray *unsentGeoLocs;
 @property (nonatomic, strong) NSString *username;
 @property (nonatomic, strong) NSString *password;
 
@@ -24,5 +22,6 @@
 - (TSGeoLocManager*)availableGeoLocManager;
 - (void)updateGeoLoc:(TSGeoLoc*)geoLoc withSentandLocationID:(NSString*)locationID;
 - (void)deleteGeoLoc:(TSGeoLoc*)geoLoc;
+- (NSArray*)getUnsentGeoLocs;
 
 @end

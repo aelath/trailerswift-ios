@@ -8,10 +8,13 @@
 
 #import "TSGeoLocStore.h"
 #import "TSGeoLoc.h"
+#import "TSGeoLocPrivateProperties.h"
 
 @interface TSGeoLocStore ()
 
 @property (nonatomic, strong) TSGeoLocManager *gLocMan;
+@property (nonatomic, strong) NSMutableArray *allGeoLocs;
+@property (nonatomic, strong) NSMutableArray *unsentGeoLocs;
 
 @end
 
@@ -66,6 +69,11 @@
     [self.unsentGeoLocs removeObject:geoLoc];
     
     geoLoc.locationID = locationID;
+}
+
+- (NSArray*)getUnsentGeoLocs
+{
+    return self.unsentGeoLocs;
 }
 
 - (void)deleteGeoLoc:(TSGeoLoc *)geoLoc

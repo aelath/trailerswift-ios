@@ -7,10 +7,7 @@
 //
 
 #import "TSGeoLoc.h"
-
-@interface TSGeoLoc ()
-
-@end
+#import "TSGeoLocPrivateProperties.h"
 
 @implementation TSGeoLoc
 
@@ -21,6 +18,11 @@
     self.timeStamp = loc.timestamp;
     
     return self;
+}
+
+- (CLLocation*)location;
+{
+    return self.location;
 }
 
 @end

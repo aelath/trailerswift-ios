@@ -70,6 +70,7 @@
 		BCB65F7418CB732700F04F9A /* TSGeoLocManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSGeoLocManager.m; sourceTree = "<group>"; };
 		BCB65F7618CC146700F04F9A /* TSNetworkUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSNetworkUtility.h; sourceTree = "<group>"; };
 		BCB65F7718CC146700F04F9A /* TSNetworkUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSNetworkUtility.m; sourceTree = "<group>"; };
+		BCF0430218D38EA80097D7AA /* TSGeoLocPrivateProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSGeoLocPrivateProperties.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -183,6 +184,7 @@
 			children = (
 				BCB65F6618CADE5A00F04F9A /* TSGeoLoc.h */,
 				BCB65F6718CADE5A00F04F9A /* TSGeoLoc.m */,
+				BCF0430218D38EA80097D7AA /* TSGeoLocPrivateProperties.h */,
 				BCB65F7018CB691500F04F9A /* TSGeoLocStore.h */,
 				BCB65F7118CB691500F04F9A /* TSGeoLocStore.m */,
 			);

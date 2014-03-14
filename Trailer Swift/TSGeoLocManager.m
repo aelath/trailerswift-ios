@@ -117,7 +117,7 @@
 
 - (void)sendUnsentGeoLocs
 {
-    NSArray *unsent = self.store.unsentGeoLocs;
+    NSArray *unsent = [self.store getUnsentGeoLocs];
     if ([unsent count] > 0) {
         for (TSGeoLoc *geoLoc in unsent) {
             // Send to the platform via network utility
