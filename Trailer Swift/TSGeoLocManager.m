@@ -12,11 +12,13 @@
 #import "TSNetworkUtility.h"
 
 #define kTSGeoLocCreationInterval 60 // Seconds. Default is 1 hour, 3600
+#define kTSGeoLocGPSBool NO // Use GPS?
 
 @interface TSGeoLocManager () <CLLocationManagerDelegate>
 
 @property (nonatomic, weak) TSGeoLocStore *store;
 @property (nonatomic, assign) BOOL track;
+@property (nonatomic, assign) BOOL useGPS;
 @property (nonatomic, strong) CLLocationManager *locationManager;
 @property (nonatomic, strong) CLLocation *lastLocation;
 @property (nonatomic, strong) CLLocation *currenLocation;
@@ -40,10 +42,14 @@
         // Begin listening for location info
         self.track = YES;
         NSLog(@"** Start Listening for Location **");
-        [self.locationManager startUpdatingLocation];
+        if (_useGPS == YES) {
+            [self.locationManager startUpdatingLocation];
+        }
+        [self.locationManager startMonitoringSignificantLocationChanges];
     } else {
         self.track = NO;
         [self.locationManager stopUpdatingLocation];
+        [self.locationManager stopMonitoringSignificantLocationChanges];
         NSLog(@"** Stopped Listening for Location **");
         return;
     }
@@ -55,7 +61,7 @@
         CLLocationManager *lm = [[CLLocationManager alloc] init];
         lm.delegate = self;
         lm.desiredAccuracy = kCLLocationAccuracyHundredMeters;
-        lm.distanceFilter = 1000;
+        lm.distanceFilter = 100;
         _locationManager = lm;
     }
     return _locationManager;
