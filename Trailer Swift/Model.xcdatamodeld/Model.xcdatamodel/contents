@@ -1,19 +1,22 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="3401" systemVersion="13C64" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="5063" systemVersion="13C64" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
     <entity name="TSGeoLoc" representedClassName="GeoLoc" syncable="YES">
         <attribute name="friendlyName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="location" optional="YES" attributeType="Transformable" valueTransformerName="CLLocation" syncable="YES"/>
+        <attribute name="locationID" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="sent" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="timeStamp" optional="YES" attributeType="Date" syncable="YES"/>
-        <relationship name="location" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="TSGeoLoc" syncable="YES"/>
         <relationship name="store" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="TSGeoLocStore" inverseName="geoLoc" inverseEntity="TSGeoLocStore" syncable="YES"/>
     </entity>
     <entity name="TSGeoLocStore" representedClassName="TSGeoLocStore" syncable="YES">
         <attribute name="allGeoLocs" optional="YES" attributeType="Transformable" syncable="YES"/>
+        <attribute name="password" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="unsentGeoLocs" optional="YES" attributeType="Transformable" syncable="YES"/>
-        <relationship name="geoLoc" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="TSGeoLoc" inverseName="store" inverseEntity="TSGeoLoc" syncable="YES"/>
+        <attribute name="username" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="geoLoc" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="TSGeoLoc" inverseName="store" inverseEntity="TSGeoLoc" syncable="YES"/>
     </entity>
     <elements>
-        <element name="TSGeoLoc" positionX="0" positionY="0" width="0" height="0"/>
-        <element name="TSGeoLocStore" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="TSGeoLoc" positionX="0" positionY="0" width="128" height="135"/>
+        <element name="TSGeoLocStore" positionX="0" positionY="0" width="128" height="120"/>
     </elements>
 </model>
