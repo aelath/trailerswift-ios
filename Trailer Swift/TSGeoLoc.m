@@ -11,6 +11,12 @@
 
 @implementation TSGeoLoc
 
+@dynamic location;
+@dynamic friendlyName;
+@dynamic timeStamp;
+@dynamic locationID;
+@dynamic sent;
+
 - (id)initWithLocation:(CLLocation*)loc
 {
     self = [super init];

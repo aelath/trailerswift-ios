@@ -7,12 +7,13 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <CoreData/CoreData.h>
 #import "TSGeoLocManager.h"
 
 @class TSGeoLoc;
 @class CLLocation;
 
-@interface TSGeoLocStore : NSObject
+@interface TSGeoLocStore : NSManagedObject
 
 @property (nonatomic, strong) NSString *username;
 @property (nonatomic, strong) NSString *password;

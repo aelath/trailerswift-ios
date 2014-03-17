@@ -20,8 +20,11 @@
 
 @implementation TSGeoLocStore
 
-@synthesize allGeoLocs;
-@synthesize unsentGeoLocs;
+@dynamic allGeoLocs;
+@dynamic unsentGeoLocs;
+@dynamic gLocMan;
+@dynamic username;
+@dynamic password;
 
 + (TSGeoLocStore*)sharedStore
 {
@@ -57,10 +60,10 @@
 
 - (TSGeoLocManager*)availableGeoLocManager
 {
-    if (!_gLocMan) {
-        _gLocMan = [[TSGeoLocManager alloc] init];
+    if (!self.gLocMan) {
+        self.gLocMan = [[TSGeoLocManager alloc] init];
     }
-    return _gLocMan;
+    return self.gLocMan;
 }
 
 - (void)updateGeoLoc:(TSGeoLoc *)geoLoc withSentandLocationID:(NSString *)locationID
