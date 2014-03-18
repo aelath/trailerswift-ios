@@ -7,13 +7,12 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <CoreData/CoreData.h>
 #import "TSGeoLocManager.h"
 
 @class TSGeoLoc;
 @class CLLocation;
 
-@interface TSGeoLocStore : NSManagedObject
+@interface TSGeoLocStore : NSObject
 
 @property (nonatomic, strong) NSString *username;
 @property (nonatomic, strong) NSString *password;
@@ -24,5 +23,6 @@
 - (void)updateGeoLoc:(TSGeoLoc*)geoLoc withSentandLocationID:(NSString*)locationID;
 - (void)deleteGeoLoc:(TSGeoLoc*)geoLoc;
 - (NSArray*)getUnsentGeoLocs;
+- (BOOL)saveChanges;
 
 @end

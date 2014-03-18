@@ -12,7 +12,7 @@
 
 @interface TSGeoLoc : NSManagedObject
 
-- (id)initWithLocation:(CLLocation*)loc;
+- (id)awakeWithLocation:(CLLocation*)loc;
 - (CLLocation*)location;
 
 @end

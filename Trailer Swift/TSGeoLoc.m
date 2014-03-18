@@ -17,9 +17,9 @@
 @dynamic locationID;
 @dynamic sent;
 
-- (id)initWithLocation:(CLLocation*)loc
+- (id)awakeWithLocation:(CLLocation*)loc
 {
-    self = [super init];
+    [super awakeFromInsert];
     self.location = loc;
     self.timeStamp = loc.timestamp;
     
