@@ -11,7 +11,7 @@
 #import "TSGeoLocStore.h"
 #import "TSNetworkUtility.h"
 
-#define kTSGeoLocCreationInterval 60 // Seconds. Default is 1 hour, 3600
+#define kTSGeoLocCreationInterval 5 // Seconds. Default is 1 hour, 3600
 #define kTSGeoLocGPSBool NO // Use GPS?
 
 @interface TSGeoLocManager () <CLLocationManagerDelegate>
@@ -32,6 +32,7 @@
     self = [super init];
     if (self) {
         _store = [TSGeoLocStore sharedStore];
+        _useGPS = YES; // for testing
     }
     return self;
 }
@@ -61,7 +62,7 @@
         CLLocationManager *lm = [[CLLocationManager alloc] init];
         lm.delegate = self;
         lm.desiredAccuracy = kCLLocationAccuracyHundredMeters;
-        lm.distanceFilter = 100;
+        lm.distanceFilter = 0; // should be 100
         _locationManager = lm;
     }
     return _locationManager;
@@ -88,10 +89,11 @@
     [nu sendGeoLocation:geoLoc sender:self];
 }
 
-- (void)locationResponseWithObject:(TSGeoLoc*)object locationID:(NSString*)locationID
+- (void)locationResponseWithObject:(TSGeoLoc*)object locationID:(NSNumber*)locationID
 {
     // If SUCCESS, update the geoloc to SENT, send unsent geolocs
-    [self.store updateGeoLoc:object withSentandLocationID:locationID];
+    NSString *locIDString = [NSString stringWithFormat:@"%@", locationID];
+    [self.store updateGeoLoc:object withSentandLocationID:locIDString];
     [self sendUnsentGeoLocs];
 }
 

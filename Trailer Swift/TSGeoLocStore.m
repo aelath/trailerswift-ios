@@ -8,7 +8,7 @@
 
 #import "TSGeoLocStore.h"
 #import "TSGeoLoc.h"
-#import "TSGeoLocPrivateProperties.h"
+//#import "TSGeoLocPrivateProperties.h"
 @import CoreData;
 
 @interface TSGeoLocStore ()
@@ -90,7 +90,7 @@
     if (!self.allGeoLocs) {
         NSFetchRequest *request = [[NSFetchRequest alloc] init];
         
-        NSEntityDescription *e = [NSEntityDescription entityForName:@"TSGeoLoc"
+        NSEntityDescription *e = [NSEntityDescription entityForName:@"GeoLoc"
                                              inManagedObjectContext:self.context];
         NSSortDescriptor *sd = [NSSortDescriptor sortDescriptorWithKey:@"timeStamp" ascending:YES];
 
@@ -115,10 +115,10 @@
     if (!self.unsentGeoLocs) {
         NSFetchRequest *request = [[NSFetchRequest alloc] init];
         
-        NSEntityDescription *e = [NSEntityDescription entityForName:@"TSGeoLoc"
+        NSEntityDescription *e = [NSEntityDescription entityForName:@"GeoLoc"
                                              inManagedObjectContext:self.context];
         NSSortDescriptor *sd = [NSSortDescriptor sortDescriptorWithKey:@"timeStamp" ascending:YES];
-        NSPredicate *p = [NSPredicate predicateWithFormat:@"sent == NO"];
+        NSPredicate *p = [NSPredicate predicateWithFormat:@"sent == 0"];
         
         request.entity = e;
         request.sortDescriptors = @[sd];
@@ -141,18 +141,12 @@
 
 - (TSGeoLoc*)newGeoLocWithLocation:(CLLocation *)location
 {
-    TSGeoLoc *geoLoc = [NSEntityDescription insertNewObjectForEntityForName:@"TSGeoLoc"
+    TSGeoLoc *geoLoc = [NSEntityDescription insertNewObjectForEntityForName:@"GeoLoc"
                                                      inManagedObjectContext:self.context];
-//    if (!self.allGeoLocs) {
-//        self.allGeoLocs = [NSMutableArray arrayWithObject:geoLoc];
-//        if (!self.unsentGeoLocs) {
-//            self.unsentGeoLocs = [NSMutableArray arrayWithObject:geoLoc];
-//        } else {
-//            [self.unsentGeoLocs addObject:geoLoc];
-//        }
-//    } else {
-//        [self.allGeoLocs addObject:geoLoc];
-//    }
+
+    [geoLoc setLocation:location];
+    geoLoc.timeStamp = location.timestamp;
+    [geoLoc.managedObjectContext save:nil];
 
     [self.unsentGeoLocs addObject:geoLoc];
     [self.allGeoLocs addObject:geoLoc];
@@ -170,8 +164,8 @@
 
 - (void)updateGeoLoc:(TSGeoLoc *)geoLoc withSentandLocationID:(NSString *)locationID
 {
-    geoLoc.sent = YES;
-    geoLoc.locationID = locationID;
+    [geoLoc setSent:@(1)];
+    [geoLoc setLocationID:locationID];
     [self.unsentGeoLocs removeObject:geoLoc];
 }
 

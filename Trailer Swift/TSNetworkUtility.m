@@ -90,7 +90,7 @@
     NSMutableDictionary *paramDict = [NSMutableDictionary dictionaryWithObjects:@[ self.authToken, self.userID ]
                                                                         forKeys:@[ @"user_token", @"user_email" ]];
 
-    CLLocation *location = geoLoc.location;
+    CLLocation *location = [geoLoc location];
     NSString *date = [self.dateFormatter stringFromDate:location.timestamp];
     NSDictionary *entryDict = @{@"lat": @(location.coordinate.latitude),
                                 @"lng": @(location.coordinate.longitude),

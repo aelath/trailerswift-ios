@@ -2,33 +2,52 @@
 //  TSGeoLoc.m
 //  Trailer Swift
 //
-//  Created by Jacob Kobernik on 3/8/14.
+//  Created by Jacob Kobernik on 3/18/14.
 //  Copyright (c) 2014 Jacob Kobernik. All rights reserved.
 //
 
 #import "TSGeoLoc.h"
-#import "TSGeoLocPrivateProperties.h"
+
 
 @implementation TSGeoLoc
 
-@dynamic location;
 @dynamic friendlyName;
-@dynamic timeStamp;
+@dynamic locationData;
 @dynamic locationID;
 @dynamic sent;
+@dynamic timeStamp;
+@synthesize location;
 
-- (id)awakeWithLocation:(CLLocation*)loc
+- (CLLocation*)location
 {
-    [super awakeFromInsert];
-    self.location = loc;
-    self.timeStamp = loc.timestamp;
-    
-    return self;
+    if (!location) {
+        CLLocation *loc = [NSKeyedUnarchiver unarchiveObjectWithData:self.locationData];
+        location = loc;
+    }
+    return location;
 }
 
-- (CLLocation*)location;
+- (void)setLocation:(CLLocation *)loc
 {
-    return self.location;
+    location = loc;
+    [self willChangeValueForKey:@"location"];
+    NSData *data = [NSKeyedArchiver archivedDataWithRootObject:loc];
+    self.locationData = data;
+    [self didChangeValueForKey:@"location"];
 }
 
+- (void)setSent:(NSNumber *)sent
+{
+    [self willChangeValueForKey:@"sent"];
+    [self setPrimitiveValue:sent forKey:@"sent"];
+    [self didChangeValueForKey:@"sent"];
+}
+//
+//- (void)setLocationID:(NSString *)locID
+//{
+//    NSString *key = @"locationID";
+//    [self willChangeValueForKey:key];
+//    ;
+//    [self didChangeValueForKey:key];
+//}
 @end

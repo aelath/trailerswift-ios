@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="5063" systemVersion="13C64" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
-    <entity name="TSGeoLoc" representedClassName="GeoLoc" syncable="YES">
+    <entity name="GeoLoc" representedClassName="TSGeoLoc" syncable="YES">
         <attribute name="friendlyName" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="location" optional="YES" attributeType="Transformable" valueTransformerName="CLLocation" syncable="YES"/>
+        <attribute name="locationData" optional="YES" attributeType="Binary" valueTransformerName="" syncable="YES"/>
         <attribute name="locationID" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="sent" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="sent" optional="YES" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
         <attribute name="timeStamp" optional="YES" attributeType="Date" syncable="YES"/>
     </entity>
     <elements>
-        <element name="TSGeoLoc" positionX="0" positionY="0" width="128" height="120"/>
+        <element name="GeoLoc" positionX="0" positionY="0" width="128" height="120"/>
     </elements>
 </model>

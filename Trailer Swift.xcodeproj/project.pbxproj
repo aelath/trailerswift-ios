@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		258DBA285DEA4F4D99FCDE0A /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 786F405BC80845909B2F6E8E /* libPods.a */; };
+		BC6FF68618D8F21B0015D544 /* TSGeoLoc.m in Sources */ = {isa = PBXBuildFile; fileRef = BC6FF68518D8F21B0015D544 /* TSGeoLoc.m */; };
 		BCB65F3218CABD8900F04F9A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BCB65F3118CABD8900F04F9A /* Foundation.framework */; };
 		BCB65F3418CABD8900F04F9A /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BCB65F3318CABD8900F04F9A /* CoreGraphics.framework */; };
 		BCB65F3618CABD8900F04F9A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BCB65F3518CABD8900F04F9A /* UIKit.framework */; };
@@ -22,7 +23,6 @@
 		BCB65F5318CABD8900F04F9A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BCB65F3518CABD8900F04F9A /* UIKit.framework */; };
 		BCB65F5B18CABD8900F04F9A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = BCB65F5918CABD8900F04F9A /* InfoPlist.strings */; };
 		BCB65F5D18CABD8900F04F9A /* Trailer_SwiftTests.m in Sources */ = {isa = PBXBuildFile; fileRef = BCB65F5C18CABD8900F04F9A /* Trailer_SwiftTests.m */; };
-		BCB65F6818CADE5A00F04F9A /* TSGeoLoc.m in Sources */ = {isa = PBXBuildFile; fileRef = BCB65F6718CADE5A00F04F9A /* TSGeoLoc.m */; };
 		BCB65F6C18CB62C000F04F9A /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = BCB65F6A18CB62C000F04F9A /* Model.xcdatamodeld */; };
 		BCB65F7218CB691500F04F9A /* TSGeoLocStore.m in Sources */ = {isa = PBXBuildFile; fileRef = BCB65F7118CB691500F04F9A /* TSGeoLocStore.m */; };
 		BCB65F7518CB732700F04F9A /* TSGeoLocManager.m in Sources */ = {isa = PBXBuildFile; fileRef = BCB65F7418CB732700F04F9A /* TSGeoLocManager.m */; };
@@ -42,6 +42,8 @@
 /* Begin PBXFileReference section */
 		786F405BC80845909B2F6E8E /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		8F6BAD2332AE4806A7B263A9 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
+		BC6FF68418D8F21B0015D544 /* TSGeoLoc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSGeoLoc.h; sourceTree = "<group>"; };
+		BC6FF68518D8F21B0015D544 /* TSGeoLoc.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSGeoLoc.m; sourceTree = "<group>"; };
 		BCB65F2E18CABD8900F04F9A /* Trailer Swift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Trailer Swift.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		BCB65F3118CABD8900F04F9A /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		BCB65F3318CABD8900F04F9A /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -61,8 +63,6 @@
 		BCB65F5818CABD8900F04F9A /* Trailer SwiftTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Trailer SwiftTests-Info.plist"; sourceTree = "<group>"; };
 		BCB65F5A18CABD8900F04F9A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		BCB65F5C18CABD8900F04F9A /* Trailer_SwiftTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Trailer_SwiftTests.m; sourceTree = "<group>"; };
-		BCB65F6618CADE5A00F04F9A /* TSGeoLoc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSGeoLoc.h; sourceTree = "<group>"; };
-		BCB65F6718CADE5A00F04F9A /* TSGeoLoc.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSGeoLoc.m; sourceTree = "<group>"; };
 		BCB65F6B18CB62C000F04F9A /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		BCB65F7018CB691500F04F9A /* TSGeoLocStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSGeoLocStore.h; sourceTree = "<group>"; };
 		BCB65F7118CB691500F04F9A /* TSGeoLocStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSGeoLocStore.m; sourceTree = "<group>"; };
@@ -70,7 +70,6 @@
 		BCB65F7418CB732700F04F9A /* TSGeoLocManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSGeoLocManager.m; sourceTree = "<group>"; };
 		BCB65F7618CC146700F04F9A /* TSNetworkUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSNetworkUtility.h; sourceTree = "<group>"; };
 		BCB65F7718CC146700F04F9A /* TSNetworkUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSNetworkUtility.m; sourceTree = "<group>"; };
-		BCF0430218D38EA80097D7AA /* TSGeoLocPrivateProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSGeoLocPrivateProperties.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -182,9 +181,8 @@
 		BCB65F6918CAE2E300F04F9A /* GeoLocation */ = {
 			isa = PBXGroup;
 			children = (
-				BCB65F6618CADE5A00F04F9A /* TSGeoLoc.h */,
-				BCB65F6718CADE5A00F04F9A /* TSGeoLoc.m */,
-				BCF0430218D38EA80097D7AA /* TSGeoLocPrivateProperties.h */,
+				BC6FF68418D8F21B0015D544 /* TSGeoLoc.h */,
+				BC6FF68518D8F21B0015D544 /* TSGeoLoc.m */,
 				BCB65F7018CB691500F04F9A /* TSGeoLocStore.h */,
 				BCB65F7118CB691500F04F9A /* TSGeoLocStore.m */,
 			);
@@ -328,9 +326,9 @@
 				BCB65F7518CB732700F04F9A /* TSGeoLocManager.m in Sources */,
 				BCB65F7818CC146700F04F9A /* TSNetworkUtility.m in Sources */,
 				BCB65F7218CB691500F04F9A /* TSGeoLocStore.m in Sources */,
-				BCB65F6818CADE5A00F04F9A /* TSGeoLoc.m in Sources */,
 				BCB65F6C18CB62C000F04F9A /* Model.xcdatamodeld in Sources */,
 				BCB65F4218CABD8900F04F9A /* TSAppDelegate.m in Sources */,
+				BC6FF68618D8F21B0015D544 /* TSGeoLoc.m in Sources */,
 				BCB65F4818CABD8900F04F9A /* TSMainViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
